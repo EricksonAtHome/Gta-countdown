@@ -6,12 +6,12 @@ const publishableKey = computed(
 )
 const domain = computed(() => config.public.logoDomain as string)
 
-const cdnSrc = computed(() => {
+const logoDevSrc = computed(() => {
   const token = publishableKey.value
   if (!token) return ''
   const params = new URLSearchParams({
     token,
-    size: '500',
+    size: '200',
     format: 'png',
     theme: 'dark',
     retina: 'true',
@@ -35,51 +35,39 @@ async function onError() {
   }
 }
 
-const src = computed(() => fallbackSrc.value || cdnSrc.value)
+const src = computed(() => fallbackSrc.value || logoDevSrc.value)
 </script>
 
 <template>
   <div class="brand-logo animate-logo-in">
+    <GtaViMark />
     <img
       v-if="src"
       :src="src"
       :alt="`${domain} logo`"
-      class="brand-logo__img"
-      width="500"
-      height="500"
+      class="brand-logo__dev"
+      width="64"
+      height="64"
       referrerpolicy="no-referrer-when-downgrade"
       @error="onError"
     >
-    <p
-      v-else
-      class="brand-logo__fallback"
-    >
-      Rockstar Games
-    </p>
   </div>
 </template>
 
 <style scoped>
 .brand-logo {
-  display: grid;
-  place-items: center;
-  width: min(58vw, 320px);
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.35rem;
+  width: min(70vw, 340px);
 }
 
-.brand-logo__img {
-  width: 100%;
-  height: auto;
+.brand-logo__dev {
+  width: 48px;
+  height: 48px;
   object-fit: contain;
-  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45));
-}
-
-.brand-logo__fallback {
-  margin: 0;
-  color: #fff;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  letter-spacing: 0.08em;
-  text-align: center;
+  border-radius: 10px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.4));
 }
 </style>
