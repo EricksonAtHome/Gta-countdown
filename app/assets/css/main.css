@@ -1,0 +1,72 @@
+:root {
+  --color-brand-dark: #120c1f;
+  --color-surface: #f3f4f6;
+  --color-ink: #0a0a0a;
+  --color-ink-muted: #1f2937;
+  --font-display: 'Bebas Neue', Impact, Haettenschweiler, sans-serif;
+  --font-body: 'Outfit', 'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#__nuxt {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes tick-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+.animate-fade-rise {
+  animation: fade-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-logo-in {
+  animation: logo-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-tick {
+  animation: tick-pulse 1s ease-in-out infinite;
+}
