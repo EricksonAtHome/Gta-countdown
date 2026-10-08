@@ -7,110 +7,76 @@ useHead({
 
 <template>
   <div class="page">
-    <div
-      class="page__dark"
-      aria-hidden="true"
-    />
-
-    <svg
-      class="page__light"
-      viewBox="0 0 100 100"
-      preserveAspectRatio="none"
-      aria-hidden="true"
+    <aside
+      class="brand"
+      aria-label="Brand"
     >
-      <path
-        d="M38,0 C58,16 64,34 65,50 C64,66 58,84 38,100 L100,100 L100,0 Z"
-        fill="currentColor"
-      />
-    </svg>
+      <BrandLogo />
+    </aside>
 
-    <div class="page__stage">
-      <aside
-        class="brand"
-        aria-label="Brand"
-      >
-        <BrandLogo />
-      </aside>
-
-      <main class="content">
-        <ReleaseCountdown />
-      </main>
-    </div>
+    <main class="content">
+      <ReleaseCountdown />
+    </main>
   </div>
 </template>
 
 <style scoped>
 .page {
-  position: relative;
+  display: flex;
   min-height: 100vh;
   min-height: 100dvh;
   overflow: hidden;
-  background: var(--color-brand-dark);
-}
-
-.page__dark {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 32% 48%, rgba(214, 48, 140, 0.16), transparent 40%),
-    radial-gradient(circle at 48% 70%, rgba(255, 130, 40, 0.1), transparent 46%),
-    var(--color-brand-dark);
-}
-
-.page__light {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  color: var(--color-surface);
-  filter: drop-shadow(-12px 0 20px rgba(6, 2, 16, 0.28));
-  pointer-events: none;
-  z-index: 1;
-}
-
-.page__stage {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(280px, 42%) minmax(0, 1fr);
-  min-height: 100vh;
-  min-height: 100dvh;
+  background: #f3f4f6;
 }
 
 .brand {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 44%;
   display: grid;
   place-items: center;
-  padding: clamp(1.25rem, 4vw, 2.5rem);
-  padding-right: clamp(2.5rem, 7vw, 5rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  padding-right: clamp(2.5rem, 6vw, 4.5rem);
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(
+      -18deg,
+      transparent 0 16px,
+      rgba(255, 255, 255, 0.03) 16px 17px
+    ),
+    #120c1f;
+  /* Soft convex right edge matching the reference */
+  border-radius: 0 48% 48% 0;
+  box-shadow: 12px 0 28px rgba(8, 4, 18, 0.22);
 }
 
 .content {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
   display: grid;
   place-items: center;
   padding: clamp(1.5rem, 5vw, 4rem);
-  padding-left: clamp(2rem, 6vw, 4.5rem);
+  padding-left: clamp(1.5rem, 4vw, 3rem);
+  background: #f3f4f6;
 }
 
 @media (max-width: 860px) {
-  .page__light {
-    display: none;
-  }
-
-  .page__stage {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
+  .page {
+    flex-direction: column;
   }
 
   .brand {
-    padding: 2.5rem 1.25rem 2rem;
-    background: transparent;
+    flex: 0 0 auto;
+    min-height: 42vh;
+    border-radius: 0 0 45% 45% / 0 0 18% 18%;
+    box-shadow: 0 12px 28px rgba(8, 4, 18, 0.22);
+    padding: 2.5rem 1.25rem 2.75rem;
   }
 
   .content {
-    background: var(--color-surface);
-    box-shadow: 0 -14px 30px rgba(6, 2, 16, 0.22);
-    padding: 2.25rem 1.25rem 3rem;
-    border-radius: 1.75rem 1.75rem 0 0;
+    flex: 1 1 auto;
+    padding: 2.5rem 1.25rem 3rem;
   }
 }
 </style>
