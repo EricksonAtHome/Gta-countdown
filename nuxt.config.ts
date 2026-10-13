@@ -3,6 +3,12 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss'],
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
+  postcss: {
+    plugins: {
+      'postcss-nesting': {},
+      'tailwindcss/nesting': false,
+    },
+  },
   css: ['~/assets/css/main.css'],
   app: {
     head: {
@@ -14,6 +20,9 @@ export default defineNuxtConfig({
         },
       ],
       link: [
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'shortcut icon', href: '/favicon.ico' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         {
           rel: 'preconnect',
@@ -28,6 +37,15 @@ export default defineNuxtConfig({
     },
   },
   runtimeConfig: {
+    databaseUrl: process.env.DATABASE_URL || '',
+    neonBranch: process.env.NEON_BRANCH || '',
+    neonFunctionHelloBaseUrl: process.env.NEON_FUNCTION_HELLO_BASE_URL || '',
+    notifyEmail: 'readyforgta@ericksonholding.com',
+    smtpHost: process.env.SMTP_HOST || '',
+    smtpPort: process.env.SMTP_PORT || '587',
+    smtpUser: process.env.SMTP_USER || '',
+    smtpPass: process.env.SMTP_PASS || '',
+    smtpFrom: process.env.SMTP_FROM || 'GTA 6 Countdown <readyforgta@ericksonholding.com>',
     logoDevSecretKey: '',
     public: {
       logoDevPublishableKey: '',

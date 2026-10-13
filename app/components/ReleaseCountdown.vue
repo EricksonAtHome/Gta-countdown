@@ -2,6 +2,17 @@
 const config = useRuntimeConfig()
 const { parts } = useCountdown(config.public.releaseDate as string)
 
+const props = withDefaults(
+  defineProps<{
+    theme?: 'light' | 'dark'
+    title?: string
+  }>(),
+  {
+    theme: 'dark',
+    title: 'READY TO PLAY',
+  },
+)
+
 const units = computed(() => [
   { key: 'days', value: parts.value.days, label: 'DAYS', showColonAfter: false },
   { key: 'hours', value: parts.value.hours, label: 'HRS', showColonAfter: true },
@@ -11,9 +22,12 @@ const units = computed(() => [
 </script>
 
 <template>
-  <section class="countdown animate-fade-rise">
+  <section
+    class="countdown animate-fade-rise"
+    :class="`countdown--${props.theme}`"
+  >
     <h1 class="countdown__title">
-      SET FOR RELEASE!
+      {{ props.title }}
     </h1>
 
     <div
@@ -40,6 +54,8 @@ const units = computed(() => [
         >:</span>
       </template>
     </div>
+
+    <EmailSubscribe :theme="props.theme" />
   </section>
 </template>
 
@@ -49,18 +65,21 @@ const units = computed(() => [
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: clamp(1rem, 2.5vw, 1.5rem);
+  gap: clamp(1rem, 2vw, 1.5rem);
   width: 100%;
+  max-width: 620px;
+  background: transparent;
 }
 
 .countdown__title {
   margin: 0;
-  color: #0a0a0a;
+  color: #ffffff;
   font-family: var(--font-body);
   font-size: clamp(1.7rem, 3.8vw, 2.75rem);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.05em;
   line-height: 1;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
 }
 
 .countdown__board {
@@ -82,31 +101,55 @@ const units = computed(() => [
 }
 
 .countdown__value {
-  color: #0a0a0a;
+  color: #ffffff;
   font-family: var(--font-body);
   font-size: clamp(2.6rem, 7.5vw, 5.4rem);
   font-weight: 700;
   letter-spacing: 0;
   line-height: 0.92;
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
 }
 
 .countdown__colon {
-  color: #0a0a0a;
+  color: rgba(255, 255, 255, 0.85);
   font-family: var(--font-body);
   font-size: clamp(2.6rem, 7.5vw, 5.4rem);
   font-weight: 700;
   line-height: 0.92;
   margin: 0 0.02rem;
   transform: translateY(-0.03em);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
 }
 
 .countdown__label {
   margin-top: 0.55rem;
-  color: #111827;
+  color: rgba(255, 255, 255, 0.75);
   font-family: var(--font-body);
   font-size: clamp(0.68rem, 1.25vw, 0.9rem);
-  font-weight: 500;
-  letter-spacing: 0.14em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Light theme for Old Version V1 */
+.countdown--light .countdown__title {
+  color: #0a0a0a;
+  text-shadow: none;
+}
+
+.countdown--light .countdown__value {
+  color: #0a0a0a;
+  text-shadow: none;
+}
+
+.countdown--light .countdown__colon {
+  color: #0a0a0a;
+  text-shadow: none;
+}
+
+.countdown--light .countdown__label {
+  color: #111827;
+  text-shadow: none;
 }
 </style>

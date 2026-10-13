@@ -38,23 +38,30 @@ async function onError() {
 
 const studioSrc = computed(() => fallbackSrc.value || logoDevSrc.value)
 
-watchEffect(() => {
-  if (!studioSrc.value) return
-  useHead({
-    link: [{ rel: 'icon', type: 'image/png', href: studioSrc.value }],
-  })
-})
 </script>
 
 <template>
-  <div class="brand-logo animate-logo-in">
+  <div
+    class="brand-logo animate-logo-in"
+    @contextmenu.prevent
+    @dragstart.prevent
+  >
     <img
       src="/gta-vi-logo-v2.png"
       alt="Grand Theft Auto VI"
       class="brand-logo__mark"
       width="531"
       height="502"
+      draggable="false"
+      @dragstart.prevent
+      @contextmenu.prevent
     >
+    <div
+      class="brand-logo__shield"
+      aria-hidden="true"
+      @contextmenu.prevent
+      @dragstart.prevent
+    />
     <img
       v-if="studioSrc"
       :src="studioSrc"
@@ -62,6 +69,7 @@ watchEffect(() => {
       class="brand-logo__studio"
       width="64"
       height="64"
+      draggable="false"
       referrerpolicy="no-referrer-when-downgrade"
       @error="onError"
     >
@@ -74,6 +82,9 @@ watchEffect(() => {
   display: grid;
   place-items: center;
   width: min(40vw, 280px);
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .brand-logo__mark {
@@ -81,6 +92,25 @@ watchEffect(() => {
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 16px 36px rgba(0, 0, 0, 0.45));
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+  pointer-events: none;
+}
+
+.brand-logo__shield {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: default;
+  background: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* Visually hidden but loaded — powers favicon via logo.dev */
