@@ -17,12 +17,13 @@ html,
 body,
 #__nuxt {
   min-height: 100%;
+  background-color: #0b0714;
 }
 
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: var(--color-surface);
+  background-color: #0b0714;
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
 }

@@ -138,8 +138,8 @@ onUnmounted(() => {
 
 .top-nav {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: max(1rem, env(safe-area-inset-top, 1rem));
+  right: max(1rem, env(safe-area-inset-right, 1rem));
   z-index: 50;
   display: flex;
   align-items: center;
@@ -174,8 +174,8 @@ onUnmounted(() => {
 
 @media (max-width: 580px) {
   .top-nav {
-    top: 0.75rem;
-    right: 0.75rem;
+    top: max(0.75rem, env(safe-area-inset-top, 0.75rem));
+    right: max(0.75rem, env(safe-area-inset-right, 0.75rem));
     gap: 0.4rem;
   }
 
@@ -272,7 +272,7 @@ onUnmounted(() => {
     justify-content: center;
     align-items: center;
     gap: 2rem;
-    padding: 2.5rem 1.25rem 3rem;
+    padding: calc(3rem + env(safe-area-inset-top, 0px)) 1.25rem calc(3rem + env(safe-area-inset-bottom, 0px));
   }
 
   .brand {

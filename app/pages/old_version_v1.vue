@@ -101,8 +101,8 @@ onMounted(() => {
 
 .v1-top-nav {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: max(1rem, env(safe-area-inset-top, 1rem));
+  right: max(1rem, env(safe-area-inset-right, 1rem));
   z-index: 50;
   display: flex;
   align-items: center;
@@ -137,8 +137,8 @@ onMounted(() => {
 
 @media (max-width: 580px) {
   .v1-top-nav {
-    top: 0.75rem;
-    right: 0.75rem;
+    top: max(0.75rem, env(safe-area-inset-top, 0.75rem));
+    right: max(0.75rem, env(safe-area-inset-right, 0.75rem));
     gap: 0.4rem;
   }
 
