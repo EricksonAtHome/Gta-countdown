@@ -6,29 +6,14 @@ useHead({
   htmlAttrs: { lang: 'en' },
 })
 
-const TRAILER_START_TIME = 7.0
-
 const playVideo = () => {
   if (videoRef.value) {
-    if (videoRef.value.currentTime < TRAILER_START_TIME) {
-      videoRef.value.currentTime = TRAILER_START_TIME
-    }
     videoRef.value.muted = true
     videoRef.value.defaultMuted = true
     const p = videoRef.value.play()
     if (p !== undefined) {
       p.catch(() => {})
     }
-  }
-}
-
-const onTimeUpdate = () => {
-  if (
-    videoRef.value &&
-    videoRef.value.currentTime > 0.05 &&
-    videoRef.value.currentTime < TRAILER_START_TIME
-  ) {
-    videoRef.value.currentTime = TRAILER_START_TIME
   }
 }
 
@@ -110,10 +95,14 @@ onUnmounted(() => {
         playsinline
         webkit-playsinline
         preload="auto"
-        @loadedmetadata="playVideo"
+        poster="/bg-poster.webp"
+        @loadeddata="playVideo"
         @canplay="playVideo"
-        @timeupdate="onTimeUpdate"
       >
+        <source
+          src="/bg-video.mp4"
+          type="video/mp4"
+        >
         <source
           src="/Grand-Theft-Auto-SnapYT.App.webm"
           type="video/webm"
@@ -206,6 +195,7 @@ onUnmounted(() => {
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  background: #0b0714 url('/bg-poster.webp') center/cover no-repeat;
 }
 
 .bg-video {
