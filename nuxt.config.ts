@@ -18,6 +18,22 @@ export default defineNuxtConfig({
           name: 'description',
           content: 'Countdown to the Grand Theft Auto VI release.',
         },
+        {
+          name: 'google-adsense-account',
+          content: 'ca-pub-4347841059368932',
+        },
+        {
+          name: 'impact-site-verification',
+          value: '95d6f922-e3a8-4f03-a1df-63c00cd95962',
+          content: '95d6f922-e3a8-4f03-a1df-63c00cd95962',
+        },
+      ],
+      script: [
+        {
+          src: 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4347841059368932',
+          async: true,
+          crossorigin: 'anonymous',
+        },
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },

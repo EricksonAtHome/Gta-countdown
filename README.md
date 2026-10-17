@@ -1,5 +1,7 @@
 # GTA 6 Countdown
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c2956ac0-4165-41e2-975f-81863abbb0ab/deploy-status)](https://app.netlify.com/projects/readyforgta/deploys)
+
 Nuxt 4 landing page with a live countdown to the Grand Theft Auto VI release.
 
 ## Features
