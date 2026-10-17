@@ -15,6 +15,10 @@ export default defineNuxtConfig({
       title: 'GTA 6 Countdown',
       meta: [
         {
+          name: 'viewport',
+          content: 'width=device-width, initial-scale=1, maximum-scale=1',
+        },
+        {
           name: 'description',
           content: 'Countdown to the Grand Theft Auto VI release.',
         },

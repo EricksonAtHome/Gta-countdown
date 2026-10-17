@@ -185,7 +185,7 @@ async function onSubmit() {
   border: none;
   outline: none;
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 16px; /* 16px prevents iOS Safari from automatically zooming in */
 }
 
 .subscribe-wrapper--dark .input-field {
@@ -252,11 +252,14 @@ async function onSubmit() {
 .status-msg {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 9999px;
-  font-size: 0.78rem;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
   font-weight: 500;
+  line-height: 1.35;
+  text-align: center;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);

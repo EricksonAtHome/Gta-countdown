@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
     return {
       success: true,
       alreadySubscribed: true,
-      message: "You're already on the VIP launch list! We'll notify you as soon as GTA 6 drops.",
+      message: "You're already on the list! (This is not a pre-order) You'll get an email when you can play.",
     }
   }
 
@@ -140,7 +140,7 @@ export default defineEventHandler(async (event) => {
 
   return {
     success: true,
-    message: "You're on the list! We'll notify you the moment GTA 6 pre-orders and trailer drops.",
+    message: "You're on the list! (This is not a pre-order) You'll get an email when you can play.",
     totalSubscribers,
     database: 'neon-postgres',
     notifiedAdmin,
